@@ -39,6 +39,9 @@ Amazon Qを用いてゲームを作成した
 ンビサバイバルを組み合わせた独特の世界観も楽しめます。
 
 
+
 ## how to run
 
 ``python zombie_cloud.py``
+``python zombie_cloud-balanced.py``　（選択肢Dがあまりに強力すぎたのでデメリット付与Version）
+
