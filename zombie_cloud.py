@@ -226,80 +226,6 @@ class ZombieCloud:
         self.slow_print("\n2日目が終わりました。明日はどんな障害が待ち受けているでしょうか...")
         
         input("\n[Enterキーを押して次の日へ進む]")
-
-    def run_game(self):
-        """ゲームのメインループ"""
-        self.display_welcome()
-        
-        while self.day <= self.max_days:
-            if self.day == 1:
-                self.day_one()
-            elif self.day == 2:
-                self.day_two()
-            elif self.day == 3:
-                self.day_three()
-            elif self.day == 4:
-                self.day_four()
-            elif self.day == 5:
-                self.day_five()
-            elif self.day == 6:
-                self.day_six()
-            elif self.day == 7:
-                self.day_seven()
-            
-            self.day += 1
-                
-        self.display_ending()
-        
-    def display_welcome(self):
-        """ゲーム開始時のウェルカムメッセージ"""
-        self.clear_screen()
-        print("\n" + "=" * 80)
-        print(f"{'ゾンビクラウド 〜停止するサービス、迫る障害〜':^80}")
-        print("=" * 80)
-        
-        self.slow_print("\nようこそ、クラウドエンジニア。")
-        self.slow_print("あなたは今から7日間、謎の「ゾンビプロセス」と戦うことになります。")
-        self.slow_print("日々発生する障害に対処し、クラウドシステムを守り抜きましょう。")
-        self.slow_print("\n選択次第で、あなたの運命は大きく変わります...")
-        
-        input("\n[Enterキーを押してゲームを開始]")
-        
-    def display_ending(self):
-        """エンディングの表示"""
-        self.display_header()
-        
-        print("\n7日間の戦いが終わりました。")
-        
-        if self.survival_score >= 80:
-            print("\n=== 完全復旧＆クラウド王 ===")
-            print("あなたは見事にゾンビクラウドの危機を乗り越え、")
-            print("システムを完全に復旧させました！")
-            print("その卓越した技術と判断力は社内で称賛され、")
-            print("「クラウド王」の異名を得ることになりました。")
-            
-        elif self.survival_score >= 40:
-            print("\n=== 中途半端に生き延びる孤立クラウド ===")
-            print("あなたは何とか主要システムを守り抜きましたが、")
-            print("一部のサービスは失われてしまいました。")
-            print("孤立したシステムで最低限の機能を維持しながら、")
-            print("完全復旧への長い道のりが始まります...")
-            
-        else:
-            print("\n=== 全滅 ===")
-            print("ゾンビプロセスはシステム全体に広がり、")
-            print("あなたの管理するクラウドは完全に機能を停止しました。")
-            print("暗い画面を見つめるあなたの背後で、")
-            print("サーバールームのドアがゆっくりと開く音が...")
-            
-        print("\nゲームオーバー")
-        print(f"最終スコア: {self.survival_score}%")
-        
-        input("\n[Enterキーを押して終了]")
-
-if __name__ == "__main__":
-    game = ZombieCloud()
-    game.run_game()
     def day_three(self):
         """3日目: データベース障害"""
         self.display_header()
@@ -781,3 +707,76 @@ if __name__ == "__main__":
         self.slow_print("あなたのクラウドの運命は、これまでの選択によって決まりました...")
         
         input("\n[Enterキーを押してエンディングへ]")
+    def run_game(self):
+        """ゲームのメインループ"""
+        self.display_welcome()
+        
+        while self.day <= self.max_days:
+            if self.day == 1:
+                self.day_one()
+            elif self.day == 2:
+                self.day_two()
+            elif self.day == 3:
+                self.day_three()
+            elif self.day == 4:
+                self.day_four()
+            elif self.day == 5:
+                self.day_five()
+            elif self.day == 6:
+                self.day_six()
+            elif self.day == 7:
+                self.day_seven()
+            
+            self.day += 1
+                
+        self.display_ending()
+        
+    def display_welcome(self):
+        """ゲーム開始時のウェルカムメッセージ"""
+        self.clear_screen()
+        print("\n" + "=" * 80)
+        print(f"{'ゾンビクラウド 〜停止するサービス、迫る障害〜':^80}")
+        print("=" * 80)
+        
+        self.slow_print("\nようこそ、クラウドエンジニア。")
+        self.slow_print("あなたは今から7日間、謎の「ゾンビプロセス」と戦うことになります。")
+        self.slow_print("日々発生する障害に対処し、クラウドシステムを守り抜きましょう。")
+        self.slow_print("\n選択次第で、あなたの運命は大きく変わります...")
+        
+        input("\n[Enterキーを押してゲームを開始]")
+        
+    def display_ending(self):
+        """エンディングの表示"""
+        self.display_header()
+        
+        print("\n7日間の戦いが終わりました。")
+        
+        if self.survival_score >= 80:
+            print("\n=== 完全復旧＆クラウド王 ===")
+            print("あなたは見事にゾンビクラウドの危機を乗り越え、")
+            print("システムを完全に復旧させました！")
+            print("その卓越した技術と判断力は社内で称賛され、")
+            print("「クラウド王」の異名を得ることになりました。")
+            
+        elif self.survival_score >= 40:
+            print("\n=== 中途半端に生き延びる孤立クラウド ===")
+            print("あなたは何とか主要システムを守り抜きましたが、")
+            print("一部のサービスは失われてしまいました。")
+            print("孤立したシステムで最低限の機能を維持しながら、")
+            print("完全復旧への長い道のりが始まります...")
+            
+        else:
+            print("\n=== 全滅 ===")
+            print("ゾンビプロセスはシステム全体に広がり、")
+            print("あなたの管理するクラウドは完全に機能を停止しました。")
+            print("暗い画面を見つめるあなたの背後で、")
+            print("サーバールームのドアがゆっくりと開く音が...")
+            
+        print("\nゲームオーバー")
+        print(f"最終スコア: {self.survival_score}%")
+        
+        input("\n[Enterキーを押して終了]")
+
+if __name__ == "__main__":
+    game = ZombieCloud()
+    game.run_game()
