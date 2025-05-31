@@ -581,3 +581,203 @@ if __name__ == "__main__":
         self.slow_print("ゾンビクラウドの正体が少しずつ見えてきました...")
         
         input("\n[Enterキーを押して次の日へ進む]")
+    def day_six(self):
+        """6日目: 認証情報漏洩"""
+        self.display_header()
+        
+        self.slow_print("朝、緊急セキュリティアラートが鳴り響きます。")
+        time.sleep(0.5)
+        self.slow_print("\n「警告: 複数のIAMユーザーで不審なアクティビティを検出」")
+        self.slow_print("\nCloudTrailログを確認すると、複数のIAMユーザーが同時に")
+        self.slow_print("通常とは異なるリージョンからAPIコールを行っています。")
+        self.slow_print("\nさらに恐ろしいことに、S3バケットの設定が次々と変更され、")
+        self.slow_print("データが外部に流出している形跡があります。")
+        self.slow_print("\nログには「ZOMBIE_CREDENTIAL_BREACH」という不気味なメッセージが...")
+        
+        self.display_status()
+        
+        options = {
+            "A": "全てのIAMアクセスキーを無効化し、新しいキーを発行する",
+            "B": "CloudTrailログを分析し、不正アクセスの範囲を特定する",
+            "C": "S3バケットを一時的に非公開設定に変更する",
+            "D": "Amazon Qに相談: 「IAM認証情報が漏洩した可能性があります。対処法は？」"
+        }
+        
+        print("どのように対応しますか？")
+        for key, value in options.items():
+            print(f"{key}: {value}")
+            
+        choice = self.get_player_choice(options)
+        
+        # 前日までの状況が影響する
+        security_penalty = 0
+        if not self.ddos_mitigated:
+            security_penalty -= 15
+            self.slow_print("\n(昨日のDDoS攻撃が続いているため、セキュリティ対応が困難になっています...)")
+        
+        if choice == "A":
+            self.slow_print("\nあなたは全てのIAMアクセスキーを無効化し、新しいキーの発行を開始しました。")
+            
+            if self.preparations["security"]:
+                self.slow_print("初日に強化したセキュリティ設定のおかげで、")
+                self.slow_print("キーローテーションがスムーズに行われました！")
+                self.slow_print("不正アクセスは遮断され、システムは安全な状態に戻りつつあります。")
+                self.update_score(20 + security_penalty)
+                self.credentials_leaked = False
+            else:
+                self.slow_print("キーの無効化は成功しましたが、新しいキーの配布に混乱が生じています。")
+                self.slow_print("一部のサービスが認証エラーで停止しています...")
+                self.update_score(-10 + security_penalty)
+                self.credentials_leaked = True
+                
+        elif choice == "B":
+            self.slow_print("\nあなたはCloudTrailログの詳細な分析を開始しました。")
+            
+            if self.preparations["monitoring"]:
+                self.slow_print("初日に設定した詳細なモニタリングのおかげで、")
+                self.slow_print("不正アクセスの正確な範囲と影響を特定することができました！")
+                self.slow_print("影響を受けたリソースのみを対象に、効率的な対策を実施しています。")
+                self.update_score(15 + security_penalty)
+                self.credentials_leaked = False
+            else:
+                self.slow_print("ログの分析には時間がかかり、その間にも不正アクセスは続いています。")
+                self.slow_print("影響の全容を把握しきれず、対応が後手に回っています...")
+                self.update_score(-15 + security_penalty)
+                self.credentials_leaked = True
+                
+        elif choice == "C":
+            self.slow_print("\nあなたはS3バケットを一時的に全て非公開設定に変更しました。")
+            self.slow_print("これにより、データの流出は止まりましたが、")
+            self.slow_print("多くのサービスが正常に機能しなくなりました。")
+            self.slow_print("ユーザーからの苦情が殺到しています...")
+            self.update_score(-20 + security_penalty)
+            self.credentials_leaked = True
+            
+        elif choice == "D":
+            self.slow_print("\nAmazon Qからの回答:")
+            self.slow_print("「IAM認証情報漏洩への対処法としては:")
+            self.slow_print("1. 影響を受けた可能性のあるすべてのアクセスキーを無効化")
+            self.slow_print("2. CloudTrailで不正なアクティビティを特定し、影響範囲を評価")
+            self.slow_print("3. 多要素認証(MFA)を全ユーザーに強制適用")
+            self.slow_print("4. AWS Organizationsのサービスコントロールポリシー(SCP)で制限を適用」")
+            
+            if random.random() < 0.7:  # 70%の確率で成功
+                self.slow_print("\nあなたはAmazon Qのアドバイスに従い、包括的なセキュリティ対策を実施しました。")
+                self.slow_print("アクセスキーの無効化とMFAの強制適用により、不正アクセスを遮断！")
+                self.slow_print("さらに、SCPで重要リソースを保護し、被害の拡大を防ぎました。")
+                self.update_score(20 + security_penalty)
+                self.credentials_leaked = False
+            else:
+                self.slow_print("\nAmazon Qのアドバイスに従おうとしましたが、")
+                self.slow_print("組織の規模と複雑さにより、全ての対策を迅速に実施することができませんでした。")
+                self.slow_print("一部のシステムは依然として脆弱な状態です...")
+                self.update_score(-5 + security_penalty)
+                self.credentials_leaked = True
+                
+        self.slow_print("\n6日目が終わりました。セキュリティ侵害との戦いは続きますが、")
+        self.slow_print("明日が最後の戦いになるでしょう...")
+        
+        input("\n[Enterキーを押して次の日へ進む]")
+    def day_seven(self):
+        """7日目: 最終決戦"""
+        self.display_header()
+        
+        self.slow_print("最終日、あなたのオフィスに緊張が漂っています。")
+        time.sleep(0.5)
+        self.slow_print("\n上司: 「ついに分かったぞ。このゾンビプロセスの正体は、")
+        self.slow_print("      古いAIモデルが暴走して生まれた自己複製型のマルウェアだ！」")
+        time.sleep(0.5)
+        self.slow_print("\nモニターには全てのAWSサービスが赤く点滅し、")
+        self.slow_print("「ZOMBIE_CLOUD_FINAL_FORM」というメッセージが表示されています。")
+        self.slow_print("\n上司: 「これが最後の戦いだ。全てを賭けて対抗しよう！」")
+        
+        self.display_status()
+        
+        options = {
+            "A": "全システムを一旦シャットダウンし、クリーンな状態から再起動する",
+            "B": "災害復旧計画を発動し、バックアップサイトに切り替える",
+            "C": "祈る（もはや人知を超えた存在に対抗するには神頼みしかない）",
+            "D": "Amazon Qに相談: 「自己複製型マルウェアがAWS環境全体に広がっています。最終対策は？」"
+        }
+        
+        print("最後の決断、どうしますか？")
+        for key, value in options.items():
+            print(f"{key}: {value}")
+            
+        choice = self.get_player_choice(options)
+        
+        # これまでの全ての準備と対応が影響する
+        final_bonus = 0
+        preparation_count = sum(1 for prep in self.preparations.values() if prep)
+        final_bonus += preparation_count * 5
+        
+        if not self.database_corrupted:
+            final_bonus += 10
+        if not self.network_isolated:
+            final_bonus += 10
+        if self.ddos_mitigated:
+            final_bonus += 10
+        if not self.credentials_leaked:
+            final_bonus += 10
+            
+        if choice == "A":
+            self.slow_print("\nあなたは大胆な決断を下し、全システムの一時シャットダウンを開始しました。")
+            self.slow_print("「全てを止めて、クリーンな状態から再構築する」")
+            
+            if final_bonus >= 30:  # 十分な準備と対応ができていた場合
+                self.slow_print("\nこれまでの適切な準備と対応のおかげで、シャットダウンと再起動は整然と進みました。")
+                self.slow_print("ゾンビプロセスが活動できない環境を作り出すことに成功！")
+                self.slow_print("システムが一つずつ正常に戻っていきます。")
+                self.update_score(25)
+            else:
+                self.slow_print("\nシャットダウンは成功しましたが、再起動に問題が発生しています。")
+                self.slow_print("一部のシステムでデータの整合性が失われ、復旧が困難になっています...")
+                self.update_score(-15)
+                
+        elif choice == "B":
+            self.slow_print("\nあなたは災害復旧計画を発動し、バックアップサイトへの切り替えを開始しました。")
+            
+            if self.preparations["backup"]:
+                self.slow_print("初日に作成した詳細なバックアップ計画のおかげで、")
+                self.slow_print("別リージョンの環境にスムーズに切り替えることができました！")
+                self.slow_print("クリーンな環境でサービスが再開され、ユーザーへの影響は最小限に抑えられています。")
+                self.update_score(30)
+            else:
+                self.slow_print("バックアップサイトへの切り替えを試みましたが、準備が不十分でした。")
+                self.slow_print("多くのデータが失われ、サービスの復旧には長い時間がかかりそうです...")
+                self.update_score(-20)
+                
+        elif choice == "C":
+            self.slow_print("\nあなたは椅子に深く腰掛け、目を閉じて祈り始めました。")
+            self.slow_print("「どうか、この危機を乗り越えられますように...」")
+            time.sleep(1)
+            
+            self.slow_print("\n...しかし、コンピュータの神様は忙しかったようです。")
+            self.slow_print("モニターには次々とエラーメッセージが表示され、")
+            self.slow_print("システムは完全に制御不能な状態になっていきます...")
+            self.update_score(-40)
+            
+        elif choice == "D":
+            self.slow_print("\nAmazon Qからの回答:")
+            self.slow_print("「自己複製型マルウェアへの最終対策としては:")
+            self.slow_print("1. 感染したリソースを特定し、完全に隔離")
+            self.slow_print("2. クリーンなバックアップから新環境を構築")
+            self.slow_print("3. WAF、Shield、GuardDutyなどの複数のセキュリティサービスを組み合わせて防御")
+            self.slow_print("4. インフラをコードとして管理し、宣言的な状態を強制適用」")
+            
+            if final_bonus >= 25:  # これまでの対応が十分だった場合
+                self.slow_print("\nあなたはAmazon Qのアドバイスと、これまでの経験を組み合わせました。")
+                self.slow_print("感染したリソースを特定・隔離し、クリーンな環境を迅速に構築！")
+                self.slow_print("さらに、複数のセキュリティレイヤーを適用して防御を固めました。")
+                self.slow_print("\nゾンビプロセスは徐々に弱まり、ついに消滅しました！")
+                self.update_score(35)
+            else:
+                self.slow_print("\nAmazon Qのアドバイスは理解できましたが、")
+                self.slow_print("これまでの対応の遅れにより、実行するのが困難になっています。")
+                self.slow_print("一部のシステムは救出できましたが、多くは失われてしまいました...")
+                self.update_score(-10)
+                
+        self.slow_print("\n7日間の戦いが終わりました。")
+        self.slow_print("あなたのクラウドの運命は、これまでの選択によって決まりました...")
+        
+        input("\n[Enterキーを押してエンディングへ]")
