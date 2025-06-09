@@ -473,9 +473,7 @@ class ZombieCloud:
             self.slow_print("高額な費用がかかりますが、今は生き残ることが最優先です。")
             
             if random.random() < 0.8:  # 80%の確率で成功
-                self.slow_print("Shield Advancedの保護が有効になり、DDoS攻撃は徐々に緩和されています！")
-                self.slow_print("トラフィックが正常値に戻りつつあります。")
-                self.update_score(15 + ddos_penalty)
+                self.slow_print("Shield Advancedの保護が有効になり、DDoS攻撃は徐々に緩和されています！") self.slow_print("トラフィックが正常値に戻りつつあります。") self.update_score(15 + ddos_penalty)
                 self.ddos_mitigated = True
             else:
                 self.slow_print("Shield Advancedの設定に時間がかかり、その間にもサービスはダウンし続けています...")
@@ -828,3 +826,4 @@ class ZombieCloud:
 if __name__ == "__main__":
     game = ZombieCloud()
     game.run_game()
+
