@@ -774,7 +774,7 @@ class ZombieCloud:
         print(f"{'ゾンビクラウド 〜停止するサービス、迫る障害〜':^80}")
         print("=" * 80)
         
-        self.slow_print("\nようこそ、クラウドエンジニア。")
+        self.slow_print("\nようこそ、クラウド エンジニア。")
         self.slow_print("あなたは今から7日間、謎の「ゾンビプロセス」と戦うことになります。")
         self.slow_print("日々発生する障害に対処し、クラウドシステムを守り抜きましょう。")
         self.slow_print("\n選択次第で、あなたの運命は大きく変わります...")

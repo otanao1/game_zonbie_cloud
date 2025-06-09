@@ -42,6 +42,7 @@ Amazon Qを用いてゲームを作成した
 
 ## how to run
 
-``python zombie_cloud.py``
-``python zombie_cloud-balanced.py``　（選択肢Dがあまりに強力すぎたのでデメリット付与Version）
+* ``python zombie_cloud.py``
+* ``python zombie_cloud-balanced.py``　（選択肢Dがあまりに強力すぎたのでD選択肢（AmzazonQ にデメリット付与Version）
+
 
